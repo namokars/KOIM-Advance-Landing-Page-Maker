@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Telegram Channel</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Dark Neon Theme */
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, rgba(33,33,33,1) 0%, rgba(0,0,0,1) 100%);
+        }
+        .channel-name {
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+        }
+        .join-button {
+            background-color: #00ffcc;
+            color: #000000;
+            box-shadow: 0 0 15px #00ffcc;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .join-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #00ffcc;
+        }
+        .timer {
+            color: #ff0077;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen">
+    <div class="text-center">
+        <img id="channel-pic" src="https://via.placeholder.com/150" alt="Channel Picture" class="w-32 h-32 rounded-full mx-auto mb-4">
+        <h1 id="channel-name" class="text-4xl font-bold mb-2 channel-name"></h1>
+        <p id="channel-description" class="text-lg mb-6"></p>
+        <div id="timer" class="timer mb-8">00:00</div>
+        <button id="join-button" class="px-8 py-3 rounded-lg font-bold join-button">Join Channel</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const channelLink = decodeURIComponent(urlParams.get('link'));
+        const channelName = decodeURIComponent(urlParams.get('name'));
+        const timerDuration = urlParams.get('timer');
+        const channelDescription = decodeURIComponent(urlParams.get('description'));
+        const channelPic = decodeURIComponent(urlParams.get('pic'));
+
+        const timerElement = document.getElementById('timer');
+        const joinButton = document.getElementById('join-button');
+        const channelNameElement = document.getElementById('channel-name');
+        const descriptionElement = document.getElementById('channel-description');
+        const channelPicElement = document.getElementById('channel-pic');
+
+        channelNameElement.textContent = channelName;
+        descriptionElement.textContent = channelDescription;
+        channelPicElement.src = channelPic;
+
+        let time = parseInt(timerDuration, 10);
+        const countdown = setInterval(() => {
+            time--;
+            timerElement.textContent = `00:${time < 10 ? '0' : ''}${time}`;
+            if (time <= 0) {
+                clearInterval(countdown);
+            }
+        }, 1000);
+
+        joinButton.addEventListener('click', () => {
+            window.location.href = channelLink;
+        });
+    </script>
+</body>
+</html>

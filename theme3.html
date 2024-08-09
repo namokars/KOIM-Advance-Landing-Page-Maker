@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Telegram Channel</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Glassmorphism Theme */
+        body {
+            background: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            text-align: center;
+        }
+        .channel-name {
+            color: #ffffff;
+        }
+        .join-button {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .join-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        .timer {
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <img id="channel-pic" src="https://via.placeholder.com/150" alt="Channel Picture" class="w-32 h-32 rounded-full mx-auto mb-4">
+        <h1 id="channel-name" class="text-4xl font-bold mb-2 channel-name"></h1>
+        <p id="channel-description" class="text-lg mb-6"></p>
+        <div id="timer" class="timer mb-8">00:00</div>
+        <button id="join-button" class="join-button">Join Channel</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const channelLink = decodeURIComponent(urlParams.get('link'));
+        const channelName = decodeURIComponent(urlParams.get('name'));
+        const timerDuration = urlParams.get('timer');
+        const channelDescription = decodeURIComponent(urlParams.get('description'));
+        const channelPic = decodeURIComponent(urlParams.get('pic'));
+
+        const timerElement = document.getElementById('timer');
+        const joinButton = document.getElementById('join-button');
+        const channelNameElement = document.getElementById('channel-name');
+        const descriptionElement = document.getElementById('channel-description');
+        const channelPicElement = document.getElementById('channel-pic');
+
+        channelNameElement.textContent = channelName;
+        descriptionElement.textContent = channelDescription;
+        channelPicElement.src = channelPic;
+
+        let time = parseInt(timerDuration, 10);
+        const countdown = setInterval(() => {
+            time--;
+            timerElement.textContent = `00:${time < 10 ? '0' : ''}${time}`;
+            if (time <= 0) {
+                clearInterval(countdown);
+            }
+        }, 1000);
+
+        joinButton.addEventListener('click', () => {
+            window.location.href = channelLink;
+        });
+    </script>
+</body>
+</html>
