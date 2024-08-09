@@ -46,14 +46,6 @@
    - Copy the generated link or use the shortened URL provided.
 4. **Share the Link**: Share the customized landing page with your audience!
 
-## 🌈 Themes Preview
-
-| Theme        | Screenshot                                             |
-|--------------|--------------------------------------------------------|
-| Dark Neon    | ![Dark Neon]([https://via.placeholder.com/150](https://github.com/namokars/KOiM/blob/main/Screenshot%20(105).png))          |
-| Gradient Wave| ![Gradient Wave](https://via.placeholder.com/150)       |
-| Glassmorphism| ![Glassmorphism](https://via.placeholder.com/150)       |
-
 ## 🛠️ Customization
 
 Feel free to customize the themes or extend the functionality:
