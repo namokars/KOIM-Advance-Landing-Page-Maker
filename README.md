@@ -1,4 +1,4 @@
-# KOIM - Kickass Online Instant Maker 🚀
+# KOIM - Landing Page Maker 🚀
 
 **KOIM** is a powerful and easy-to-use tool designed to create custom landing pages for Telegram channels in just a few clicks. Whether you're promoting a channel or simply need a stylish landing page, KOIM has got you covered with customizable themes and instant URL shortening!
 
