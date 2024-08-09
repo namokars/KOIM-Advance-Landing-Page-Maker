@@ -25,7 +25,6 @@
 1. **Clone the Repository**
     ```bash
     git clone https://github.com/your-username/koim.git
-    cd koim
     ```
 
 2. **Open the Project**
@@ -65,18 +64,6 @@ To deploy KOIM:
 2. **GitHub Pages**
    - Push the project to a GitHub repository.
    - Enable GitHub Pages in the repository settings.
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to submit a pull request or open an issue to discuss new ideas or improvements.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 💬 Contact
-
-For any questions or suggestions, feel free to contact me at [your-email@example.com](mailto:your-email@example.com).
 
 ---
 
