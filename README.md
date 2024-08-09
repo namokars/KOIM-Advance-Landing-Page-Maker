@@ -50,7 +50,7 @@
 
 | Theme        | Screenshot                                             |
 |--------------|--------------------------------------------------------|
-| Dark Neon    | ![Dark Neon](https://via.placeholder.com/150)          |
+| Dark Neon    | ![Dark Neon]([https://via.placeholder.com/150](https://github.com/namokars/KOiM/blob/main/Screenshot%20(105).png))          |
 | Gradient Wave| ![Gradient Wave](https://via.placeholder.com/150)       |
 | Glassmorphism| ![Glassmorphism](https://via.placeholder.com/150)       |
 
