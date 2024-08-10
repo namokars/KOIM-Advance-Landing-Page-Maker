@@ -3,12 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Landing Page Maker</title>
+    <title>KOIM - Telegram Landing Page Maker</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a202c;
+            color: #ffffff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header-text, label, p, input, textarea, select {
+            color: #ffffff;
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.875rem;
+            background-color: #2d3748;
+            color: #a0aec0;
+        }
+        .footer a {
+            color: #63b3ed;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer a:hover {
+            color: #4299e1;
+        }
+        .responsive-box {
+            background-color: #2d3748;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-all;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen">
-    <div class="w-full max-w-lg p-8 bg-gray-800 rounded-lg">
-        <h1 class="text-3xl font-bold mb-6 text-center">Telegram Landing Page Maker</h1>
+<body class="flex flex-col items-center justify-center min-h-screen">
+
+    <!-- Header with Date and Time -->
+    <header class="w-full text-center py-4">
+        <h1 class="header-text text-2xl font-bold">KOIM - Telegram Landing Page Maker</h1>
+        <p id="date-time" class="header-text text-sm mt-2"></p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="w-full max-w-lg p-8 bg-gray-800 rounded-lg shadow-lg">
         <form id="landing-form" class="space-y-4">
             <div>
                 <label for="channel-link" class="block mb-2">Telegram Channel Link</label>
@@ -46,6 +88,9 @@
                     <option value="theme1">Dark Neon</option>
                     <option value="theme2">Gradient Wave</option>
                     <option value="theme3">Glassmorphism</option>
+                    <option value="theme4">Retro Pixel</option>
+                    <option value="theme5">Cyberpunk</option>
+                    <option value="theme6">Minimalist Elegance</option>
                 </select>
             </div>
             <button type="button" id="generate-button"
@@ -54,13 +99,27 @@
         </form>
         <div id="generated-link" class="mt-8 text-center hidden">
             <p>Your landing page link:</p>
-            <a id="landing-page-link" href="#" class="text-blue-400"></a>
+            <div id="link-box" class="responsive-box"></div>
             <button id="copy-button" class="bg-green-600 px-4 py-2 rounded-lg font-bold mt-4">Copy Link</button>
             <p id="short-link" class="mt-4"></p>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer mt-8 w-full">
+        Made with ❤️ by <a href="https://yourwebsite.com" target="_blank">NS</a>
+    </footer>
+
     <script>
+        // Display Date and Time
+        function updateDateTime() {
+            const now = new Date();
+            const dateTimeStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            document.getElementById('date-time').textContent = dateTimeStr;
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
         async function shortenUrl(longUrl) {
             const response = await fetch(`https://api.tinyurl.com/create`, {
                 method: 'POST',
@@ -98,11 +157,10 @@
                 const shortUrl = await shortenUrl(landingPageUrl);
 
                 const generatedLinkElement = document.getElementById('generated-link');
-                const landingPageLinkElement = document.getElementById('landing-page-link');
+                const linkBoxElement = document.getElementById('link-box');
                 const shortLinkElement = document.getElementById('short-link');
 
-                landingPageLinkElement.href = landingPageUrl;
-                landingPageLinkElement.textContent = landingPageUrl;
+                linkBoxElement.textContent = landingPageUrl;
 
                 shortLinkElement.textContent = `Shortened URL: ${shortUrl}`;
 
@@ -122,8 +180,8 @@
         });
 
         document.getElementById('copy-button').addEventListener('click', () => {
-            const landingPageLinkElement = document.getElementById('landing-page-link');
-            navigator.clipboard.writeText(landingPageLinkElement.textContent)
+            const linkBoxElement = document.getElementById('link-box');
+            navigator.clipboard.writeText(linkBoxElement.textContent)
                 .then(() => {
                     alert('Link copied to clipboard!');
                 })
